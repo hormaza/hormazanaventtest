@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/hormazanaventtest/static/css/main.c6583b7b.chunk.css",
+    "main.js": "/hormazanaventtest/static/js/main.38c2a182.chunk.js",
+    "main.js.map": "/hormazanaventtest/static/js/main.38c2a182.chunk.js.map",
+    "runtime-main.js": "/hormazanaventtest/static/js/runtime-main.e831f6fa.js",
+    "runtime-main.js.map": "/hormazanaventtest/static/js/runtime-main.e831f6fa.js.map",
+    "static/js/2.71ce39a2.chunk.js": "/hormazanaventtest/static/js/2.71ce39a2.chunk.js",
+    "static/js/2.71ce39a2.chunk.js.map": "/hormazanaventtest/static/js/2.71ce39a2.chunk.js.map",
+    "index.html": "/hormazanaventtest/index.html",
+    "precache-manifest.afbc7e6f11a7e1b0db9c47fed5df407c.js": "/hormazanaventtest/precache-manifest.afbc7e6f11a7e1b0db9c47fed5df407c.js",
+    "service-worker.js": "/hormazanaventtest/service-worker.js",
+    "static/css/main.c6583b7b.chunk.css.map": "/hormazanaventtest/static/css/main.c6583b7b.chunk.css.map",
+    "static/js/2.71ce39a2.chunk.js.LICENSE.txt": "/hormazanaventtest/static/js/2.71ce39a2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e831f6fa.js",
+    "static/js/2.71ce39a2.chunk.js",
+    "static/css/main.c6583b7b.chunk.css",
+    "static/js/main.38c2a182.chunk.js"
+  ]
+}
