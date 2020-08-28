@@ -36,36 +36,38 @@ function App() {
       0
   return (
     <GlobalStyles>
-      <section id='filter'>
-        <Filter
-          operationType={operationType}
-          onChangeDirection={directionHandler}
-          onOperationTypeChange={operationTypeHandler} />
-      </section>
-      <section id='results'>
-        {
-          postingList
-            .sort(compareFunction)
-            .map((post) =>
-              <Article
-                title={post.title}
-                address={post.posting_location.address}
-                zone={post.posting_location.zone}
-                city={post.posting_location.city}
-                description={post.posting_description}
-                publishDate={post.publish_date}
-                picture={post.posting_picture}
-                price={post.posting_prices[0].price.amount}
-                currency={post.posting_prices[0].price.currency}
-                plan={post.publication_plan}
-                expenses={
-                  post.posting_prices[0].expenses &&
-                  post.posting_prices[0].expenses.amount
-                }
-              />
-            )
-        }
-      </section>
+      <div className='container'>
+        <section id='filter'>
+          <Filter
+            operationType={operationType}
+            onChangeDirection={directionHandler}
+            onOperationTypeChange={operationTypeHandler} />
+        </section>
+        <section id='results'>
+          {
+            postingList
+              .sort(compareFunction)
+              .map((post) =>
+                <Article
+                  title={post.title}
+                  address={post.posting_location.address}
+                  zone={post.posting_location.zone}
+                  city={post.posting_location.city}
+                  description={post.posting_description}
+                  publishDate={post.publish_date}
+                  picture={post.posting_picture}
+                  price={post.posting_prices[0].price.amount}
+                  currency={post.posting_prices[0].price.currency}
+                  plan={post.publication_plan}
+                  expenses={
+                    post.posting_prices[0].expenses &&
+                    post.posting_prices[0].expenses.amount
+                  }
+                />
+              )
+          }
+        </section>
+      </div>
 
     </GlobalStyles>
   );
@@ -75,8 +77,17 @@ const GlobalStyles = styled.main`
   position: relative;
   min-height: 100vh;
   background-color: #f0f0f0;
-  padding: 30px;
   display: flex;
+  width: 100%;
+  padding: 30px;
+  
+  .container {
+    display: flex;
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+
+  }
   #filter{
     flex-grow: 1;
   }
