@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import { MdUpdate } from 'react-icons/md'
+import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io'
 
 const Article = props => {
+    const [isOnFavorites, setIsOnFavorites] = useState(false)
     const {
         title,
         address,
@@ -36,6 +38,9 @@ const Article = props => {
         <div className='picture'>
             <span className='plan'>
                 {planName}
+            </span>
+            <span className='favorite' onClick={() => setIsOnFavorites(!isOnFavorites)}>
+                {!isOnFavorites ? <IoMdHeartEmpty size='20' fill='black' /> : <IoMdHeart size='20' fill='red' />}
             </span>
             <div className='image'>
             </div>
@@ -104,9 +109,36 @@ const Styles = styled.article`
             font-weight: bold;
             text-shadow: 0 2px 4px rgba(0,0,0,.7);
         }
+        .favorite{
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            z-index: 2;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,.7);
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover{
+                background: pink;
+                svg{ 
+                    fill: red;
+                }
+            }
+
+        }
         .footer-picture {
             h1{
                 margin: 5px 0;
+                right: 12px;
+                top: 12px;
             }
             height: 80px;
             margin: 10px 0 10px 10px;
