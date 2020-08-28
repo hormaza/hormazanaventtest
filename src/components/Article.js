@@ -32,7 +32,7 @@ const Article = props => {
         : plan === 'HIGHLIGHTED' ? 'Destacado'
             : 'Simple'
 
-    const fromNow = moment(publishDate.split('/').join(), "DDMMYYYY").fromNow()
+    const fromNow = Math.abs(moment(publishDate.split('/').join(), "DDMMYYYY").diff(moment(), 'days'))
 
     return <Styles plan={plan} planColor={planColor} picture={picture}>
         <div className='picture'>
@@ -55,7 +55,7 @@ const Article = props => {
             <h4>{`${address}, ${zone}, ${city}`}</h4>
             <p>{description}</p>
             <div className='footer-description'>
-                <span className='publishedDate'><MdUpdate size={24} />{`Publicado ${fromNow}`}</span>
+                <span className='publishedDate'><MdUpdate size={24} />{`Publicado hace ${fromNow} dias`}</span>
                 <button>Contactar</button>
             </div>
         </div>
