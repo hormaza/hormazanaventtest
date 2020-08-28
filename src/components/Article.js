@@ -127,6 +127,7 @@ const Styles = styled.article`
             margin: 0;
         }
         p{
+            margin: 0;
             color: #848484;
         }
 
