@@ -47,28 +47,28 @@ const Filter = props => {
                     type='radio'
                     checked={operationType === 'Comprar'}
                     onClick={() => onOperationTypeChange('Comprar')} />
-                <label for='Comprar'>Comprar</label>
+                <label htmlFor='Comprar'>Comprar</label>
                 <br />
                 <input
                     id='Alquiler'
                     type='radio'
                     checked={operationType === 'Alquiler'}
                     onClick={() => onOperationTypeChange('Alquiler')} />
-                <label for='Alquiler'>Alquiler</label>
+                <label htmlFor='Alquiler'>Alquiler</label>
                 <br />
                 <input
                     id='Temporal'
                     type='radio'
                     checked={operationType === 'Temporal'}
                     onClick={() => onOperationTypeChange('Temporal')} />
-                <label for='Temporal'>Temporal</label>
+                <label htmlFor='Temporal'>Temporal</label>
                 <br />
                 <input
                     id='Todos'
                     type='radio'
                     checked={operationType === 'Todos'}
                     onClick={() => onOperationTypeChange('Todos')} />
-                <label for='Todos'>Todos</label>
+                <label htmlFor='Todos'>Todos</label>
             </div>
         </form>
         <div>
