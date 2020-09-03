@@ -6,15 +6,38 @@ import POSTINGS from './services/postings'
 import Article from './components/Article'
 import Filter from './components/Filter'
 
+const KEY_FAVORITES = 'userFavorites'
+const getFavoritesLS = () => JSON.parse(localStorage.getItem(KEY_FAVORITES) || '[]')
+const addToFavoritesLS = (id) => {
+  const favorites = getFavoritesLS()
+  const newFavorites = favorites.indexOf(id) > -1 ? [...favorites] : [...favorites, id]
+  localStorage.setItem(KEY_FAVORITES, JSON.stringify(newFavorites))
+}
+const removeToFavoritesLS = (id) => {
+  const favorites = getFavoritesLS()
+  const newFavorites = favorites.filter(fav => fav !== id)
+  localStorage.setItem(KEY_FAVORITES, JSON.stringify(newFavorites))
+}
 function App() {
   const [postingList, setPostingList] = useState(POSTINGS)
   const [operationType, setOperationType] = useState('Todos')
+  const [userFavorites, setUserFavorites] = useState(getFavoritesLS())
+
+  const addToFavorites = (id) => {
+    addToFavoritesLS(id)
+    setUserFavorites(getFavoritesLS())
+  }
+
+  const removeToFavorites = (id) => {
+    removeToFavoritesLS(id)
+    setUserFavorites(getFavoritesLS())
+  }
 
   const directionHandler = (direction) => {
     const newPostingList = POSTINGS.filter(post =>
-      post.posting_location.address.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) != -1 ||
-      post.posting_location.zone.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) != -1 ||
-      post.posting_location.city.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) != -1
+      post.posting_location.address.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) !== -1 ||
+      post.posting_location.zone.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) !== -1 ||
+      post.posting_location.city.toLocaleLowerCase().indexOf(direction.toLocaleLowerCase()) !== -1
     )
     setPostingList(newPostingList)
   }
@@ -47,8 +70,9 @@ function App() {
           {
             postingList
               .sort(compareFunction)
-              .map((post) =>
+              .map((post, i) =>
                 <Article
+                  key={post.posting_id + i}
                   title={post.title}
                   address={post.posting_location.address}
                   zone={post.posting_location.zone}
@@ -63,7 +87,12 @@ function App() {
                     post.posting_prices[0].expenses &&
                     post.posting_prices[0].expenses.amount
                   }
-                />
+                  isOnFavorites={userFavorites.find(id => id === post.posting_id)}
+                  setIsOnFavorites={
+                    (status) => status ?
+                      addToFavorites(post.posting_id) :
+                      removeToFavorites(post.posting_id)
+                  } />
               )
           }
         </section>
