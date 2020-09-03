@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+let timer = null;
 const Contact = props => {
     const [nameError, setNameError] = useState(false)
     const [emailError, setEmailError] = useState(false)
@@ -14,6 +15,12 @@ const Contact = props => {
 
     useEffect(() => {
         blockScroll(true)
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            setNameError(false)
+            setEmailError(false)
+            setMessageError(false)
+        }, 5000)
         return () => blockScroll(false)
     })
 
@@ -131,8 +138,9 @@ const Styles = styled.div`
         }
         .error {
             input, textarea{
-                border: 2px solid #a52a2a;
+                border: 2px solid red;
             }
+
         }
    }
 `
