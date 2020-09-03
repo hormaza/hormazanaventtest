@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import moment from 'moment'
 import { MdUpdate } from 'react-icons/md'
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io'
+import Contact from './Contact'
 
 const Article = props => {
-    const [isOnFavorites, setIsOnFavorites] = useState(false)
     const {
         title,
         address,
@@ -17,9 +17,12 @@ const Article = props => {
         price,
         currency,
         plan,
-        expenses
+        expenses,
+        isOnFavorites,
+        setIsOnFavorites
     } = props
 
+    const [isOpenContactForm, setIsOpenContactForm] = useState(false)
     const currencySymbol = currency === 'ARS' ? '$'
         : currency === 'USD' ? 'US$'
             : ''
@@ -48,7 +51,6 @@ const Article = props => {
                 <h1><b>{`${currencySymbol} ${price.toLocaleString('es')}`}</b></h1>
                 <span>{expenses && `+ $${expenses} Expensas`}</span>
             </div>
-
         </div>
         <div className='description'>
             <h3>{title}</h3>
@@ -56,7 +58,10 @@ const Article = props => {
             <p>{description}</p>
             <div className='footer-description'>
                 <span className='publishedDate'><MdUpdate size={24} />{`Publicado hace ${fromNow} dias`}</span>
-                <button>Contactar</button>
+                <button onClick={() => setIsOpenContactForm(true)}>Contactar</button>
+                {
+                    isOpenContactForm && <Contact close={() => setIsOpenContactForm(false)} />
+                }
             </div>
         </div>
     </Styles>
